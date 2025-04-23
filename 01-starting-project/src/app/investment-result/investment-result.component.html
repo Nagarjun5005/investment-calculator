@@ -1,0 +1,53 @@
+<!-- 
+@if(!results){
+    <p class="center">Please Enter some values and press "calculate" </p>
+}@else{
+    <table>
+        <thead>
+            <tr>
+                <th>Year</th>
+                <th>Investment Value</th>
+                <th>Interest (Year)</th>
+                <th>Total Interest</th>
+                <th>Invested Capital</th>
+            </tr>
+        </thead>
+        <tbody>
+    
+        </tbody>
+    </table>
+} -->
+<div *ngIf="!results; else resultsTable">
+    <p class="center">Please Enter some values and press "calculate"</p>
+</div>
+<ng-template #resultsTable>
+    <table>
+        <thead>
+            <tr>
+                <th>Year</th>
+                <th>Investment Value</th>
+                <th>Interest (Year)</th>
+                <th>Total Interest</th>
+                <th>Invested Capital</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let result of results; trackBy: trackByYear">
+            <td>{{ result.year }}</td>
+            <td>{{ result.valueEndOfYear | currency }}</td>
+            <td>{{ result.interest | currency }}</td>
+            <td>{{ result.totalInterest | currency}}</td>
+            <td>{{ result.totalAmountInvested | currency}}</td>
+            </tr>
+        </tbody>
+    </table>
+</ng-template>
+
+
+<!-- year: number,
+interest: number,
+valueEndOfYear: number,
+annualInvestment: number,
+totalInterest: number,
+totalAmountInvested: number, -->
+
